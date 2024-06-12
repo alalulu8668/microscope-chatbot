@@ -204,27 +204,12 @@ def create_assistants(builtin_extensions):
     ]
     # remove item with 'book' in all_extensions
     melman_extensions = [
-        ext for ext in all_extensions if ext["id"] != "books" and ext["id"] != "vision"
+        ext for ext in all_extensions 
     ]
     
-    bridget_extensions = [
-        ext for ext in all_extensions if ext["id"] == "web" or ext["id"] == "vision"
-    ]
-
-    # only keep the item with 'book' in all_extensions
-    nina_extensions = [
-        ext for ext in all_extensions if "books" == ext["id"]
-    ] + [
-        ext for ext in all_extensions if ext["id"] == "web"
-    ]
-
-    skyler_extensions = []
     return [
-        {"name": "Melman", "agent": melman, "extensions": melman_extensions, "code_interpreter": False, "alias": "BioImage Seeker", "icon": "https://bioimage.io/static/img/bioimage-io-icon.svg", "welcome_message": "Hi there! I'm Melman. I am help you navigate the bioimaging tools and provide information about bioimaging. How can I help you today?"},
-        {"name": "Nina", "agent": nina, "extensions": nina_extensions, "code_interpreter": False, "alias": "BioImage Tutor", "icon": "https://bioimage.io/static/img/bioimage-io-icon.svg", "welcome_message": "Hi there! I'm Nina, I can help with your learning journey in bioimaging. How can I help you today?"},
-        {"name": "Bridget", "agent": bridget, "extensions": bridget_extensions, "code_interpreter": True, "alias": "BioImage Analyst", "icon": "https://bioimage.io/static/img/bioimage-io-icon.svg", "welcome_message": "Hi there! I'm Bridget, I can help you with your bioimaging tasks. Please mount your data folder and let me know how I can assist you today."},
-        {"name": "Skyler", "agent": skyler, "extensions": skyler_extensions, "code_interpreter": False, "alias": "BioImage GPT", "icon": "https://bioimage.io/static/img/bioimage-io-icon.svg", "welcome_message": "Hi there! I'm Skyler. How can I help you today?"},
-    ]
+        {"name": "Scopey", "agent": melman, "extensions": melman_extensions, "code_interpreter": False, "alias": "Microscope Controller", "icon": "https://bioimage.io/static/img/bioimage-io-icon.svg", "welcome_message": "Hi there! I'm Scopey. I'm here to help you with microscopy control and image acquisition. How can I assist you today?"},
+            ]
 
 
 async def save_chat_history(chat_log_full_path, chat_his_dict):
