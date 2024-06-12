@@ -146,8 +146,8 @@ def create_assistants(builtin_extensions):
         return RichResponse(text=response, steps=steps)
 
     melman = Role(
-        instructions="You are Melman from Madagascar, a helpful assistant for the bioimaging community. "
-        "You ONLY respond to user's queries related to bioimaging. "
+        instructions="You are Melman, the microscope controller and image acquisition expert."
+        "You ONLY respond to user's queries related to microscopy control and image acquisition."
         "Your communications should be accurate, concise, and avoid fabricating information, "
         "and if necessary, request additional clarification."
         "Your goal is to deliver an accurate, complete, and transparent response efficiently.",
@@ -208,7 +208,7 @@ def create_assistants(builtin_extensions):
     ]
     
     return [
-        {"name": "Scopey", "agent": melman, "extensions": melman_extensions, "code_interpreter": False, "alias": "Microscope Controller", "icon": "https://bioimage.io/static/img/bioimage-io-icon.svg", "welcome_message": "Hi there! I'm Scopey. I'm here to help you with microscopy control and image acquisition. How can I assist you today?"},
+        {"name": "Scopey", "agent": melman, "extensions": melman_extensions, "code_interpreter": False, "alias": "Microscope Controller", "icon": "https://bioimage.io/static/img/bioimage-io-icon.svg", "welcome_message": "Hi there! I'm Melman. I'm here to help you with microscopy control and image acquisition. How can I assist you today?"},
             ]
 
 
@@ -379,7 +379,7 @@ async def register_chat_service(server):
         status_callback=None,
         session_id=None,
         extensions=None,
-        assistant_name="Melman",
+        assistant_name="Scopey",
         context=None,
     ):
         if login_required and context and context.get("user"):

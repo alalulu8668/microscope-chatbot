@@ -1,5 +1,5 @@
 from bioimageio_chatbot.utils import ChatbotExtension
-from bioimageio_chatbot.hypha_store import HyphaDataStore
+# from bioimageio_chatbot.hypha_store import HyphaDataStore
 from openai import AsyncOpenAI
 from schema_agents import schema_tool
 import base64
