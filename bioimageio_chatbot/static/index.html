@@ -819,7 +819,7 @@
       let token = null;
       const spinner = `<div class="spinner"></div>`; // Spinner HTML
       let enableCodeInterpreter = urlParams.get('enable-code-interpreter') === "true";
-      let defaultAssistant = "Scopey";
+      let defaultAssistant = "Melman";
       if (window.self !== window.top) {
         defaultAssistant = "Skyler";
         $('#assistant-menu-button').hide();
@@ -892,7 +892,7 @@
             })
             imjoy.start({ workspace: 'default' }).then(async () => {
               imjoyApi = imjoy.api;
-              if (assistantName === 'Scopey') {
+              if (assistantName === 'Melman') {
                 console.log("Loading the Model Zoo extension...")
                 const baseUrl = location.origin
                 const plugin = await imjoyApi.loadPlugin(`${baseUrl}/chat/bioimage-model-zoo-extension.imjoy.html`)

@@ -208,7 +208,7 @@ def create_assistants(builtin_extensions):
     ]
     
     return [
-        {"name": "Scopey", "agent": melman, "extensions": melman_extensions, "code_interpreter": False, "alias": "Microscope Controller", "icon": "https://bioimage.io/static/img/bioimage-io-icon.svg", "welcome_message": "Hi there! I'm Melman. I'm here to help you with microscopy control and image acquisition. How can I assist you today?"},
+        {"name": "Melman", "agent": melman, "extensions": melman_extensions, "code_interpreter": False, "alias": "Microscope Controller", "icon": "https://bioimage.io/static/img/bioimage-io-icon.svg", "welcome_message": "Hi there! I'm Melman. I'm here to help you with microscopy control and image acquisition. How can I assist you today?"},
             ]
 
 
@@ -379,7 +379,7 @@ async def register_chat_service(server):
         status_callback=None,
         session_id=None,
         extensions=None,
-        assistant_name="Scopey",
+        assistant_name="Melman",
         context=None,
     ):
         if login_required and context and context.get("user"):
