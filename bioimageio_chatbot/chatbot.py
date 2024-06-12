@@ -204,7 +204,7 @@ def create_assistants(builtin_extensions):
     ]
     # remove item with 'book' in all_extensions
     melman_extensions = [
-        ext for ext in all_extensions 
+        ext for ext in all_extensions if "microscope" in ext["description"]
     ]
     
     return [

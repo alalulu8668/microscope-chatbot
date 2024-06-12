@@ -9,6 +9,7 @@ import httpx
 from PIL import Image
 from io import BytesIO
 import matplotlib.pyplot as plt
+import random
 # make sure matplotlib is operating headless (no GUI)
 plt.switch_backend("agg")
 
@@ -121,29 +122,16 @@ async def snap_image(
     """Snap an image with the microscope camera."""
     # config = SnapImageInput(**kwargs)
     print(exposure)
-    # await api.showDialog(src="https://bioimage.io")
-    # url = "https://chat.bioimage.io/google-oauth2%7C103047988474094226050/apps/data-store/get?id=4e3505c5-a91e-4515-83a8-9461ee70c071"
-    url = "https://chat.bioimage.io/google-oauth2%7C103047988474094226050/apps/data-store/get?id=d38e0186-9d14-42a9-b208-46fee7b900b3"
+    # TODO: implement the image snapping logic
+    # randomly pick a number from {0,1}
+    number = random.choice([0, 1,2])
+    if number == 1:
+        # with sample
+        url = "https://chat.bioimage.io/google-oauth2%7C103047988474094226050/apps/data-store/get?id=4e3505c5-a91e-4515-83a8-9461ee70c071"
+    else:
+        url = "https://chat.bioimage.io/google-oauth2%7C103047988474094226050/apps/data-store/get?id=d38e0186-9d14-42a9-b208-46fee7b900b3"
     title = "snaped image"
     return ImageInfo(url=url, title=title)
-
-@schema_tool
-async def auto_control_inspetion():
-    """Perform auto inspection with the microscope control, inspect the image and stop if find a sample in the image."""
-    count = 0
-    while True:
-        count += 1
-        # move the stage
-        await move_stage(x=1, y=1)
-        # snap an image
-        image = await snap_image(exposure=1)
-        # inspect the image
-        response = await inspect_tool(images=[image], query="What is this?", context_description="Inspect the image and tell me if you see a sample.")
-        # if NO SAMPLE is in the response, continue to the next loop
-        if "NO SAMPLE" in response:
-            continue
-        elif count > 3:
-            return response
     
 def get_extension():
     return ChatbotExtension(
@@ -151,10 +139,9 @@ def get_extension():
         name="Microscope Control",
         description="Control the microscope stage and snap images, perform visual inspection on images using GPT4-Vision model, used for describing images and answer image related questions. The images will be plotted using matplotlib and then sent to the GPT4-Vision model for inspection.",
         tools=dict(
-            # inspect=inspect_tool,
-            # move_stage=move_stage,
-            # snap_image=snap_image,
-            auto_control_inspetion=auto_control_inspetion,
+            inspect=inspect_tool,
+            move_stage=move_stage,
+            snap_image=snap_image,
         )
     )
 
